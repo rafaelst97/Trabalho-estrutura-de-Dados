@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+using namespace std;
 template<typename T>
 struct TElemento
 {
@@ -14,7 +16,7 @@ struct TListaEstatica
 };
 
 template<typename T>
-TElemento<T> criaElemento(T dado) 
+TElemento<T> criaElementoEstatica(T dado)
 {
 	TElemento<T> novoElemento;
 	novoElemento.Dado = dado;
@@ -22,7 +24,7 @@ TElemento<T> criaElemento(T dado)
 }
 
 template<typename T>
-void iniciaListaEstatica(TListaEstatica<T> &lista, int maximo) 
+void iniciaListaEstatica(TListaEstatica<T>& lista, int maximo)
 {
 	lista.qtd = 0;
 	lista.capacidade = maximo;
@@ -31,12 +33,18 @@ void iniciaListaEstatica(TListaEstatica<T> &lista, int maximo)
 }
 
 template<typename T>
-void adicionaPosicaoEstatica(TListaEstatica<T> &lista, T dado, int posicao) 
+inline bool operator==(T& dado1, T& dado2)
+{
+	return dado1 == dado2;
+}
+
+template<typename T>
+void adicionaPosicaoEstatica(TListaEstatica<T>& lista, T dado, int posicao)
 {
 	if (lista.qtd > lista.capacidade)
 	{
 		throw "lista cheia";
-		
+
 	}
 	else if (posicao > lista.qtd || posicao < 0)
 	{
@@ -44,7 +52,7 @@ void adicionaPosicaoEstatica(TListaEstatica<T> &lista, T dado, int posicao)
 	}
 	else
 	{
-		TElemento<T> novo = criaElemento(dado);
+		TElemento<T> novo = criaElementoEstatica(dado);
 		for (int i = lista.qtd; i > posicao; i--)
 		{
 			lista.elementos[i] = lista.elementos[i - 1];
@@ -55,24 +63,25 @@ void adicionaPosicaoEstatica(TListaEstatica<T> &lista, T dado, int posicao)
 }
 
 template<typename T>
-void adicionaInicioListaEstatica(TListaEstatica<T> &lista, T dado) 
+void adicionaInicioListaEstatica(TListaEstatica<T>& lista, T dado)
 {
 	adicionaPosicaoEstatica(lista, dado, 0);
 }
 
 template<typename T>
-void adicionaFinalListaEstatica(TListaEstatica<T> &lista, T dado)
+void adicionaFinalListaEstatica(TListaEstatica<T>& lista, T dado)
 {
 	adicionaPosicaoEstatica(lista, dado, lista.qtd);
 }
 
 template<typename T>
-void removePosicaoEstatica(TListaEstatica<T> &lista, int posicao)
-{	
+void removePosicaoEstatica(TListaEstatica<T>& lista, int posicao)
+{
 	if (posicao > lista.qtd || posicao < 0)
 	{
 		throw "indice invalido";
-	}else
+	}
+	else
 	{
 		for (int i = posicao; i < lista.qtd; i++)
 		{
@@ -83,20 +92,21 @@ void removePosicaoEstatica(TListaEstatica<T> &lista, int posicao)
 }
 
 template<typename T>
-void removeInicioListaEstatica(TListaEstatica<T> &lista)
+void removeInicioListaEstatica(TListaEstatica<T>& lista)
 {
-	removePosicao(lista, 0);
+	removePosicaoEstatica(lista, 0);
 }
 
 template<typename T>
-void removeFinalListaEstatica(TListaEstatica<T> &lista)
+void removeFinalListaEstatica(TListaEstatica<T>& lista)
 {
-	removePosicao(lista, lista.qtd);
+	removePosicaoEstatica(lista, lista.qtd);
 }
 
 template<typename T>
 bool pertenceListaEstatica(TListaEstatica<T> lista, T dado)
 {
+
 	for (int i = 0; i < lista.qtd; i++)
 	{
 		if (lista.elementos[i].Dado == dado)
@@ -109,8 +119,8 @@ bool pertenceListaEstatica(TListaEstatica<T> lista, T dado)
 
 template<typename T>
 T retornaItemEstatica(TListaEstatica<T> lista, int posicao)
-{	
-	if (posicao < 0 || posicao > lista.qtd) 
+{
+	if (posicao < 0 || posicao > lista.qtd)
 	{
 		throw "posicao invalida";
 	}
@@ -121,11 +131,11 @@ T retornaItemEstatica(TListaEstatica<T> lista, int posicao)
 }
 
 template<typename T>
-int retornaIndiceEstatica(TListaEstatica<T> lista, T dado)
+int retornaItemEstatica(TListaEstatica<T> lista, T dado)
 {
 	for (int i = 0; i < lista.qtd; i++)
 	{
-		if (lista.elementos[i].Dado == dado) 
+		if (lista.elementos[i].Dado == dado)
 		{
 			return i;
 		}
@@ -135,4 +145,10 @@ int retornaIndiceEstatica(TListaEstatica<T> lista, T dado)
 
 		}
 	}
+}
+
+template<typename T>
+void imprimeItemEstatica(TListaEstatica<T> lista, int posicao)
+{
+	cout << lista.elementos[posicao].Dado;
 }
