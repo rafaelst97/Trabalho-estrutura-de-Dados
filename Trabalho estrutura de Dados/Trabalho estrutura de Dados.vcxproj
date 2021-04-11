@@ -156,7 +156,6 @@
     <ClInclude Include="listaEncadeada.h" />
     <ClInclude Include="listaEstatica.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="sobrecargasInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
