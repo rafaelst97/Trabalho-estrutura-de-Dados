@@ -49,6 +49,138 @@ struct TEvento
 	TListaEstatica<TSubEvento> subeventos;
 };
 
+inline bool operator>= (TData& dataFinal, TData & dataInicial){
+
+	if (dataFinal.ano >= dataInicial.ano){
+		if (dataFinal.ano > dataInicial.ano) {
+			return true;
+		}
+		else {
+			if (dataFinal.mes >= dataInicial.mes) {
+				if(dataFinal.mes > dataInicial.mes){
+					return true;
+				}
+				else {
+					if (dataFinal.dia >= dataInicial.dia) {
+						if (dataFinal.dia > dataInicial.dia) {
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+					else {
+						return false;
+					}
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		
+	}
+	else {
+		return false;
+	}
+
+}
+
+inline bool operator> (TData& dataFinal, TData& dataInicial) {
+
+	if (dataFinal.ano > dataInicial.ano) {
+		return true;
+	}
+	else if (dataFinal.ano == dataInicial.ano){
+		if (dataFinal.mes > dataInicial.mes) {
+			return true;
+		}
+		else if (dataFinal.mes == dataInicial.mes) {
+			if (dataFinal.dia > dataInicial.dia) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+
+}
+
+inline bool operator== (TData& dataFinal, TData& dataInicial) {
+	if (dataFinal.ano == dataInicial.ano) {
+		if (dataFinal.mes == dataInicial.mes) {
+			if (dataFinal.dia == dataInicial.dia) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+inline bool operator>= (THora& horaFinal, THora& horaInicial) {
+	if (horaFinal.hora > horaInicial.hora) {
+		return true;
+	}
+	else if (horaFinal.hora == horaInicial.hora) {
+		if (horaFinal.minuto >= horaInicial.minuto) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+inline bool operator> (THora& horaFinal, THora& horaInicial) {
+	if (horaFinal.hora > horaInicial.hora) {
+		
+		return true;
+
+	}else if(horaFinal.hora == horaInicial.hora) {
+		if (horaFinal.minuto > horaInicial.minuto) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+inline bool operator== (THora& horaFinal, THora& horaInicial) {
+	if (horaFinal.hora == horaInicial.hora) {
+		if (horaFinal.minuto == horaInicial.minuto) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
 std::ostream& operator<<(std::ostream& out, TData obj)
 {
 	out << obj.dia << "/" << obj.mes << "/" << obj.ano;

@@ -12,18 +12,20 @@
 using namespace std;
 int main()
 {	
-	THora testeHora;
-	testeHora.hora = 0;
-	testeHora.minuto = 0;
-	TData testeData;
-	testeData.dia = 0;
-	testeData.mes = 0;
-	testeData.ano = 0;
+	THora horaInicial;
+	THora horaFinal;
 
-	cin >> testeHora;
-	cout << testeHora;
-	cin >> testeData;
-	cout << testeData;
+	horaInicial.hora = 10;
+	horaInicial.minuto = 30;
+	horaFinal.hora = 10;
+	horaFinal.minuto = 30;
+
+	if (horaFinal == horaInicial) {
+		cout << "Certo" << endl;
+	}
+	else {
+		cout << "Nao deu certo" << endl;
+	}
 
 }
 
